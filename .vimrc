@@ -41,56 +41,18 @@ Glaive codefmt plugin[mappings]
 Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
 filetype plugin indent on " required
 " *********************************************
-" NERD插件属性
+" NERD插件屬性
 " *********************************************
-" 开启vim的时候默认开启NERDTree
+" default開啟NERDTree
 ""au vimenter * NERDTree 
-" 设置F2为开启NERDTree的快捷键
+" F2為開啟NERDTree的快捷键
 map <F2> :NERDTreeToggle<CR>
-" 启动时自动focus
+" 開啟時focus
 map <F4> :TagbarToggle<CR>
 let g:tagbar_auto_faocus =1
-" 启动指定文件时自动开启tagbar
+" 開啟指定文件時自動開啟tagbar
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
  
-" *********************************************
-" YCM插件相关
-" *********************************************
-let g:ycm_server_python_interpreter='/usr/bin/python'
-let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
-" 让vim的补全菜单行为与一般IDE一致
-set completeopt=longest,menu
-" 触发(符号)补全时需要键入的字符数
-let g:ycm_min_num_of_chars_for_completion = 1
-" 补全候选项的最小字符数
-let g:ycm_min_num_identifier_candidate_chars = 0
-" 关闭诊断显示功能(已经使用了ale进行异步语法检查)
-let g:ycm_show_diagnostics_ui = 0
-" 在字符串和注释中仍会触发补全
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
-" 禁止缓存匹配项，每次重新生成匹配项
-let g:ycm_cache_omnifunc = 0
-" 在用户接受提供的完成字符串后自动关闭窗口
-let g:ycm_autoclose_preview_window_after_completion = 0
-" 跳转到声明或定义处
-nnoremap <silent><leader>gj :YcmCompleter GoToDefinitionElseDeclaration<cr>
-
-" 自动触发语义补全
-let g:ycm_semantic_triggers =  {
-            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{1}'],
-            \ 'cs,lua,javascript': ['re!\w{1}'],
-            \ }
-" 遇到下列文件时才会开启YCM
-let g:ycm_filetype_whitelist = {
-            \ "c":1,
-            \ "cpp":1,
-            \ "python":1,
-            \ "sh":1,
-            \ }
-"nnoremap <F5> :YcmForceCompileAndDiagno
-" nerdcommenter預設熱鍵<leader>為'\'，這裡將熱鍵設定為','
-let mapleader=','
 
 "k8s設定檔"
 "To turn on automatic list update:
@@ -160,7 +122,7 @@ func! CompileAndRun()
     endif
 endfunc
 
-" Indent Python in the Google way.
+" Indent Python in the Google way. （google style）
 
 augroup autoformat_settings
   autocmd FileType bzl AutoFormatBuffer buildifier
@@ -177,18 +139,3 @@ augroup autoformat_settings
 augroup END
 
 
-"分開不同檔案vimrc
-filetype plugin on
-"js
-"for scrooloose/syntastic' 
-set statusline+=%#warningmsg#
- set statusline+=%{SyntasticStatuslineFlag()}
- set statusline+=%*
- let g:syntastic_always_populate_loc_list = 1
- let g:syntastic_auto_loc_list = 1
- let g:syntastic_check_on_open = 1
- let g:syntastic_check_on_wq = 0
- let g:syntastic_javascript_checkers = ['standard']
- let g:syntastic_javascript_standard_generic = 1
- let g:syntastic_javascript_checkers = ['eslint']
- let g:syntastic_javascript_eslint_exec = 'eslint'
